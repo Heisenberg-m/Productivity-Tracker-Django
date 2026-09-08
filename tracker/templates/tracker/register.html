@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'tracker/CSS/register.css' %}" />
+    <title>Productivity Tracker | Register</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="form-container">
+        <h2>Register</h2>
+        {% if messages %} {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %} {% endif %}
+
+        <form method="POST" action="">
+          {% csrf_token %}
+          <div class="input-container">
+            <div class="value">
+              <label for="fname">First Name:</label>
+              <input
+                type="text"
+                id="fname"
+                name="fname"
+                placeholder="Enter your first name"
+                value="{{ fname }}"
+                required
+              />
+            </div>
+            <div class="value">
+              <label for="lname">Last Name:</label>
+              <input
+                type="text"
+                id="lname"
+                name="lname"
+                placeholder="Enter your last name"
+                value="{{ lname }}"
+              />
+            </div>
+            <div class="value">
+              <label for="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Choose a username"
+                value="{{ username }}"
+                required
+              />
+            </div>
+            <div class="value">
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                value="{{ email }}"
+                required
+              />
+            </div>
+            <div class="value">
+              <label for="pass1">Password:</label>
+              <input
+                type="password"
+                id="pass1"
+                name="pass1"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <div class="value">
+              <label for="pass2">Confirm Password:</label>
+              <input
+                type="password"
+                id="pass2"
+                name="pass2"
+                placeholder="Confirm your password"
+                required
+              />
+            </div>
+          </div>
+          <button type="submit">Register</button>
+        </form>
+
+        <p>
+          Already have an account?
+          <a href="{% url 'login_view' %}" class="link">Login here</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

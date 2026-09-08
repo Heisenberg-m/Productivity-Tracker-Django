@@ -1,0 +1,142 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productivity Tracker|Home</title>
+    <link rel="stylesheet" href="{% static 'tracker/CSS/home.css' %}" />
+  </head>
+  <body>
+    <div class="nav">
+      <p id="nav-item1">
+        <span id="title-primary">Productivity</span
+        ><span id="title-secondary">Tracker</span>
+      </p>
+      <p id="nav-item2">Hello, {{ user.first_name }}</p>
+    </div>
+    <div class="main-container">
+      <div class="container">
+        <p id="heading">
+          Welcome! Let's set up <br />
+          your weekly goals.
+        </p>
+        <p id="info">
+          Your goals are flexible. Set your taget hours for each day of the week
+          <br />
+          and you can always edit them later.
+        </p>
+        {% if messages %} {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %} {% endif %}
+        <form id="goalForm" method="POST" action="">
+          {% csrf_token %}
+          <div class="input-container">
+            <div class="values">
+              <label for="Monday">Monday:</label>
+              <input
+                type="number"
+                name="Monday"
+                id="Monday"
+                placeholder="hours"
+                value="{{ goal.Monday|default:'' }}"
+                min="0"
+                step="1"
+                max="24"
+              />
+            </div>
+            <div class="values">
+              <label for="Tuesday">Tuesday:</label>
+              <input
+                type="number"
+                name="Tuesday"
+                id="Tuesday"
+                placeholder="hours"
+                value="{{ goal.Tuesday|default:'' }}"
+                min="0"
+                step="1"
+                max="24"
+              />
+            </div>
+            <div class="values">
+              <label for="Wednesday">Wednesday:</label>
+              <input
+                type="number"
+                name="Wednesday"
+                id="Wednesday"
+                placeholder="hours"
+                value="{{ goal.Wednesday|default:'' }}"
+                min="0"
+                step="1"
+                max="24"
+              />
+            </div>
+            <div class="values">
+              <label for="Thursday">Thursday:</label>
+              <input
+                type="number"
+                name="Thursday"
+                id="Thursday"
+                placeholder="hours"
+                value="{{ goal.Thursday|default:'' }}"
+                min="0"
+                step="1"
+                max="24"
+              />
+            </div>
+            <div class="values">
+              <label for="Friday">Friday:</label>
+              <input
+                type="number"
+                name="Friday"
+                id="Friday"
+                placeholder="hours"
+                value="{{ goal.Friday|default:'' }}"
+                min="0"
+                step="1"
+                max="24"
+              />
+            </div>
+            <div class="values">
+              <label for="Saturday">Saturday:</label>
+              <input
+                type="number"
+                name="Saturday"
+                id="Saturday"
+                placeholder="hours"
+                value="{{ goal.Saturday|default:'' }}"
+                min="0"
+                step="1"
+                max="24"
+              />
+            </div>
+            <div class="values">
+              <label for="Sunday">Sunday:</label>
+              <input
+                type="number"
+                name="Sunday"
+                id="Sunday"
+                placeholder="hours"
+                value="{{ goal.Sunday|default:'' }}"
+                min="0"
+                step="1"
+                max="24"
+              />
+            </div>
+          </div>
+          <button type="submit">Set goals</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  document
+    .getElementById("goalForm")
+    .addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+      }
+    });
+</script>

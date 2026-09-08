@@ -1,0 +1,165 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+.main-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.left {
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right {
+  width: 50%;
+  height: 100vh;
+  background-image: url("../images/image.png");
+  background-size: cover;
+  background-position: center;
+  max-height: 85vh;
+  max-width: 45vw;
+  margin-top: 5vh;
+  margin-left: 30px;
+  border-radius: 70px;
+  border: 2px solid #219ebc;
+  box-shadow: -10px 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  font-size: 30px;
+  margin-left: 50px;
+  font-weight: 500;
+}
+
+#title-primary {
+  color: #219ebc;
+  margin-right: 5px;
+}
+
+#title-secondary {
+  color: #ffb703;
+}
+
+#title {
+  margin-left: 50px;
+  margin-top: 40px;
+  font-size: 60px;
+  font-weight: lighter;
+  letter-spacing: 5px;
+  line-height: 1.2;
+  animation: slideInFromRight 1.5s ease-out forwards;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(30%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+#subtitle {
+  margin-left: 50px;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: lighter;
+  color: #023047;
+  line-height: 1.5;
+  max-width: 80%;
+}
+
+.button {
+  display: inline-block;
+  margin-left: 50px;
+  margin-top: 40px;
+  padding: 12px 24px;
+  font-size: 18px;
+  color: white;
+  background-color: #219ebc;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.3s ease;
+  width: fit-content;
+}
+
+.button:hover {
+  background-color: #ffb703;
+}
+
+/* ========================= */
+/* Mobile Responsive Design  */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 40px;
+  }
+
+  .left {
+    width: 100%;
+    height: auto;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .right {
+    max-width: 90%;
+    width: 90%;
+    height: 35vh;
+    min-height: 250px;
+    margin: 30px auto 10px auto;
+    border-radius: 40px;
+  }
+
+  h1 {
+    margin-left: 0;
+    margin-top: 20px;
+    font-size: 28px;
+  }
+
+  #title {
+    margin-left: 0;
+    margin-top: 20px;
+    font-size: 40px;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    padding: 0 15px;
+  }
+
+  #subtitle {
+    margin-left: 0;
+    margin-top: 15px;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 90%;
+  }
+
+  .button {
+    margin-left: 0;
+    margin-top: 35px;
+    padding: 14px 32px;
+    font-size: 18px;
+  }
+}

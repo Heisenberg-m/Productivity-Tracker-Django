@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productivity Tracker</title>
+    <link rel="stylesheet" href="{% static 'tracker/CSS/landing.css' %}" />
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="left">
+        <h1>
+          <span id="title-primary">Productivity</span
+          ><span id="title-secondary">Tracker</span>
+        </h1>
+        <p id="title">
+          <span id="title-secondary">TRACK</span><br />
+          YOUR EVERYDAY<br />
+          <span id="title-primary">PRODUCTIVITY</span>
+        </p>
+        <p id="subtitle">
+          Turn daily tasks into long-term success. Progress you can actually
+          see. <br />
+          Start your journey to a more productive life today!
+        </p>
+        <a href="{% url 'register' %}" class="button">Get Started</a>
+      </div>
+      <div class="right"></div>
+    </div>
+  </body>
+</html>

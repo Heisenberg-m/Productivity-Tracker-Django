@@ -1,0 +1,115 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productivity Tracker|dashboard</title>
+    <link rel="stylesheet" href="{% static 'tracker/CSS/Dashboard.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="nav">
+      <p id="nav-item1">
+        <span id="title-primary">Productivity</span
+        ><span id="title-secondary">Tracker</span>
+      </p>
+      <div class="nav-links">
+        <a href="{% url 'timer' %}" id="nav-item3">Timer</a>
+        <a href="{% url 'dashboard' %}" id="nav-item3">Dashboard</a>
+      </div>
+      <p id="nav-item2">
+        Hello, {{ request.user.first_name|default:request.user.username }}
+      </p>
+    </div>
+
+    <div class="main-content">
+      <div class="page-header">
+        <h1>Dashboard</h1>
+
+        <div class="page-actions">
+          <a href="{% url 'edit_goal' %}" class="edit-link">Edit Goals</a>
+          <a href="{% url 'logout_view' %}" class="logout-link">Logout</a>
+        </div>
+      </div>
+
+      <main class="dashboard-container">
+        <div class="card">
+          <div class="card-header">
+            <h3>TODAY'S STATUS</h3>
+            <p class="subtitle">{{ today_date }}</p>
+          </div>
+
+          <div class="card-body">
+            <div class="timer-display">{{ today_hours|default:"0" }}</div>
+            <p class="small-text">Hours Completed</p>
+            <p class="goal-text">Your Goal Today: {{ goal_today }} hours</p>
+          </div>
+
+          <div class="card-footer">
+            <form method="POST">
+              {% csrf_token %}
+              <input type="text" name="hours" placeholder="Hours" />
+              <button type="submit">Log Hours</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>MONTHLY SUMMARY</h3>
+          </div>
+          <div class="card-body summary-content">
+            <p>Total Target Hours: {{ total_target_month }} hrs</p>
+            <p>Total Hours Completed: {{ total_completed_month }} hrs</p>
+          </div>
+
+          <div class="card-header section-divider">
+            <h3>OVERALL SUMMARY</h3>
+          </div>
+          <div class="card-body summary-content">
+            <p>Total Target Hours: {{ total_target_all }} hrs</p>
+            <p>Total Hours Completed: {{ total_completed_all }} hrs</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>WEEKLY SUMMARY</h3>
+          </div>
+          <div class="card-body summary-content">
+            <p>Total Target Hours: {{ total_target_week }} hrs</p>
+            <p>Total Hours Completed: {{ total_completed_week }} hrs</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>PRODUCTIVITY STREAK</h3>
+          </div>
+          <div class="card-body streak-content">
+            <p>Current Streak:</p>
+            <div class="streak-days">{{ streak }} days</div>
+            {% if streak > 0 %}
+            <p class="small-text">Keep it up!</p>
+            {% else %}
+            <p class="small-text">Start your first streak!</p>
+            {% endif %}
+          </div>
+        </div>
+      </main>
+    </div>
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+      <p class="message {{ message.tags }}">{{ message }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </body>
+</html>

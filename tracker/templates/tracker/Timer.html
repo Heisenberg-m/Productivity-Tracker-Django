@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productivity Tracker|Timer</title>
+    <link rel="stylesheet" href="{% static 'tracker/CSS/Timer.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="nav">
+      <p id="nav-item1">
+        <span id="title-primary">Productivity</span
+        ><span id="title-secondary">Tracker</span>
+      </p>
+      <div class="nav-links">
+        <a href="{% url 'timer' %}" id="nav-item3">Timer</a>
+        <a href="{% url 'dashboard' %}" id="nav-item3">Dashboard</a>
+      </div>
+      <p id="nav-item2">
+        Hello, {{ request.user.first_name|default:request.user.username }}
+      </p>
+    </div>
+
+    <div class="main-content">
+      <div class="timer-container">
+        <form style="display: none">{% csrf_token %}</form>
+
+        <div class="timer-display" id="display">00:00:00</div>
+
+        <div class="timer-controls">
+          <button id="start-btn" class="btn primary-btn">Start</button>
+          <button id="pause-btn" class="btn secondary-btn">Pause</button>
+          <button id="stop-btn" class="btn danger-btn">Stop / Reset</button>
+        </div>
+
+        <button id="log-btn" class="btn log-btn">Log Hours</button>
+      </div>
+    </div>
+
+    <script src="{% static 'tracker/JS/Timer.js' %}"></script>
+  </body>
+</html>
